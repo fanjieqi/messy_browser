@@ -1,0 +1,11 @@
+GEM
+  remote: https://gems.ruby-china.com/
+  specs:
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+
+BUNDLED WITH
+   2.0.2
