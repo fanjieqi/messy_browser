@@ -1,4 +1,3 @@
-
 require_relative 'task'
 
 module Network
@@ -17,28 +16,29 @@ module Network
       @queue << [object, params]
     end
 
-    def get_thread_index
-      index = @threads.map.with_index { |thread, index| [thread.status, index] }
-                      .select { |status, index| status == ::Network::Task::SLEEP }
-                      .sample.last
+    def thread_index
+      @threads.map.with_index { |thread, index| [thread.status, index] }
+              .select { |status, _index| status == ::Network::Task::SLEEP }
+              .sample.last
     end
 
     def run
-      Thread.new {
+      Thread.new do
         loop do
           next if @queue.empty?
-          index = get_thread_index
+
+          index = thread_index
           next if index.blank?
 
           tag, params = @queue.pop
           begin
             @tasks[index].push(tag, params)
-          rescue => e
+          rescue StandardError => e
             warn e.full_message
             push(tag, params)
           end
         end
-      }
+      end
     end
   end
 end

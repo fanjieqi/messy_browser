@@ -1,7 +1,10 @@
-require_relative 'ui/browser'
-require_relative 'ui/button'
-require_relative 'ui/info_bar'
-require_relative 'ui/tab'
+require 'fox16'
+require 'fox16/canvas'
+
+include Fox
+include Canvas
+
+require_relative 'ui/browser_window'
 
 module Ui
 end

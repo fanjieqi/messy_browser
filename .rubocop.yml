@@ -1,6 +1,12 @@
 Metrics/LineLength:
   Max: 130
 
+Metrics/MethodLength:
+  Max: 20
+
+Style/MixinUsage:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
@@ -11,4 +17,4 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Layout/EmptyLineAfterGuardClause:
-  Enalbed: false
+  Enabled: false

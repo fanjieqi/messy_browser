@@ -6,7 +6,7 @@ module DomTree
 
     PRODUCT = {
       div: ::DomTree::Tag::Div
-    }
+    }.freeze
 
     def get_instance(name)
       (PRODUCT[name] || ::DomTree::Tag::Div).new

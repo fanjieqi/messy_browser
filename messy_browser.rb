@@ -14,6 +14,15 @@ class MessyBrowser
 
   def run
     puts 'The MessyBrowser is running.'
+
+    # Create a new application
+    application = FXApp.new('MessyBrowser', 'Init')
+    # Construct the main window
+    ::Ui::BrowserWindow.new(application)
+    # Create the windows
+    application.create
+    # Start event loop
+    application.run
   end
 end
 

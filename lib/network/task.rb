@@ -1,9 +1,7 @@
-
-
 module Network
   class Task
     TIMEOUT = 60
-    SLEEP = 'sleep'
+    SLEEP = 'sleep'.freeze
     attr_reader :pool, :queue
 
     def initialize(pool)
@@ -16,7 +14,7 @@ module Network
     end
 
     def run
-      Thread.new {
+      Thread.new do
         loop do
           object, params = @queue.pop
           next if object.blank? || params.blank?
@@ -25,13 +23,13 @@ module Network
             puts "#{Thread.current} is Working"
             result = RestClient::Request.execute(params.merge(timeout: TIMEOUT))
             object.process(result)
-          rescue => e
+          rescue StandardError => e
             warn e.full_message
           ensure
             Thread.pass
           end
         end
-      }
+      end
     end
   end
 end
